@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filling Entry | AquaFlow Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="bot.css">
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="header-logo">
+            <div class="logo-circle"><i class="fas fa-droplet"></i></div>
+            <div class="logo-text">
+                <h1>Drinking Water 💧</h1>
+                <p>Inventory Software</p>
+            </div>
+        </div>
+        <nav class="icon-nav">
+            <a href="index.html" class="nav-item"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
+            <a href="bot.html" class="nav-item active"><i class="fas fa-fill-drip"></i><span>Filling Entry</span></a>
+            <a href="fill.html" class="nav-item"><i class="fas fa-history"></i><span>History</span></a>
+        </nav>
+        <div class="window-controls">
+            <button id="theme-toggle"><i class="fas fa-moon"></i></button>
+            <i class="fas fa-rectangle-xmark close-btn" onclick="clearLogs()"></i>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <img src="https://png.pngtree.com/background/20250105/original/pngtree-a-large-bottle-of-pure-water-on-blue-background-picture-image_15497827.jpg" class="bg-fixed" alt="Background">
+
+        <div class="glass-overlay">
+            <div class="form-card">
+                <div class="form-header">
+                    <h2>Daily Filling Operation Log 📋</h2>
+                    <p>Enter details to update production stock.</p>
+                </div>
+
+                <form id="fillingLogForm" class="filling-form">
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>Product Selection 📦</label>
+                            <select id="productType" required>
+                                <option value="">-- Choose Product --</option>
+                                <option value="19">19 Liter Jar</option>
+                                <option value="1.5">1.5 Liter Bottle</option>
+                                <option value="0.5">500ml Bottle</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Filled Quantity (Units) 🔢</label>
+                            <input type="number" id="quantity" placeholder="Units filled" required>
+                            <small class="calc-text">Total Vol: <b id="totalVol">0</b> Liters</small>
+                        </div>
+                        <div class="input-group">
+                            <label>Date & Time ⏰</label>
+                            <input type="datetime-local" id="opDateTime" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Operator Name 👤</label>
+                            <input type="text" id="operator" placeholder="Full Name" required>
+                        </div>
+                    </div>
+                    <div class="form-footer">
+                        <button type="submit" class="btn-primary">Confirm & Save ✅</button>
+                    </div>
+                </form>
+
+                <!-- Internal Data Display (Live Linking) -->
+                <div class="log-display">
+                    <h3>Recent Operations Table</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Product</th>
+                                    <th>Qty</th>
+                                    <th>Total Vol</th>
+                                    <th>Operator</th>
+                                </tr>
+                            </thead>
+                            <tbody id="logTableBody">
+                                <!-- Data from Storage -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="status-bar">
+        <div class="status-left">© SOFTWEBPK - Production Control</div>
+        <div class="status-right">Entries in Database: <span id="entryCount">0</span></div>
+    </footer>
+
+    <script src="bot.js"></script>
+</body>
+</html>

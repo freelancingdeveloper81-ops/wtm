@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaFlow Pro | Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="produ.css">
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="brand">
+            <div class="logo-circle"><i class="fas fa-droplet"></i></div>
+            <div class="brand-info">
+                <h1>AquaFlow Pro 💧</h1>
+                <p>Real-time Operations</p>
+            </div>
+        </div>
+        <nav class="icon-nav">
+            <a href="produ.html" class="nav-item active"><i class="fas fa-chart-pie"></i><span>Dashboard</span></a>
+            <a href="Prod.html" class="nav-item"><i class="fas fa-box"></i><span>Inventory</span></a>
+            <a href="cust.html" class="nav-item"><i class="fas fa-users"></i><span>Customers</span></a>
+        </nav>
+        <div class="window-controls">
+            <button id="theme-toggle"><i class="fas fa-moon"></i></button>
+            <i class="fas fa-rectangle-xmark close-btn" onclick="clearAllData()"></i>
+        </div>
+    </header>
+
+    <div class="app-layout">
+        <aside class="sidebar">
+            <nav class="side-nav">
+                <a href="#" class="side-link active"><i class="fas fa-home"></i> Overview</a>
+                <a href="Prod.html" class="side-link"><i class="fas fa-plus-circle"></i> Manage Products</a>
+                <a href="bot.html" class="side-link"><i class="fas fa-fill-drip"></i> Production Log</a>
+                <a href="cust.html" class="side-link"><i class="fas fa-user-plus"></i> Customer CRM</a>
+            </nav>
+        </aside>
+
+        <main class="workspace">
+            <div class="container">
+                <div class="welcome-banner">
+                    <h2>Operational Intelligence 🌊</h2>
+                    <div class="live-clock" id="digitalClock">00:00:00</div>
+                </div>
+
+                <!-- Stats Cards: pulling from Storage -->
+                <div class="pillar-grid">
+                    <div class="pillar-card blue">
+                        <div class="card-icon"><i class="fas fa-boxes-stacked"></i></div>
+                        <div class="card-content">
+                            <h3 id="stat-products">0</h3>
+                            <p>Total Products Stored 📦</p>
+                        </div>
+                    </div>
+                    <div class="pillar-card green">
+                        <div class="card-icon"><i class="fas fa-bottle-water"></i></div>
+                        <div class="card-content">
+                            <h3 id="stat-filling">0</h3>
+                            <p>Bottles Filled (Today) 🍼</p>
+                        </div>
+                    </div>
+                    <div class="pillar-card orange">
+                        <div class="card-icon"><i class="fas fa-users"></i></div>
+                        <div class="card-content">
+                            <h3 id="stat-customers">0</h3>
+                            <p>Active Customers 👥</p>
+                        </div>
+                    </div>
+                    <div class="pillar-card red">
+                        <div class="card-icon"><i class="fas fa-receipt"></i></div>
+                        <div class="card-content">
+                            <h3 id="stat-balance">$ 0</h3>
+                            <p>Total Outstanding Dues ⚖️</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity from Global Storage -->
+                <div class="data-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-list-ul"></i> Master Activity Log</h3>
+                        <button class="btn-refresh" onclick="updateDashboard()"><i class="fas fa-sync"></i> Sync Data</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="pro-table">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Category</th>
+                                    <th>Activity Details</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="masterLogBody">
+                                <!-- Storage entries will appear here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="produ.js"></script>
+</body>
+</html>

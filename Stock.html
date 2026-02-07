@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Movement | AquaFlow ERP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Stock.css">
+</head>
+<body>
+
+    <header class="software-header">
+        <div class="brand-unit">
+            <div class="logo-orb"><i class="fas fa-droplet"></i></div>
+            <div class="brand-text">
+                <h1>Drinking Water 💧</h1>
+                <p>Inventory Software Pro</p>
+            </div>
+        </div>
+
+        <nav class="software-nav">
+            <!-- Internal Links Updated -->
+            <a href="produ.html" class="nav-btn"><i class="fas fa-chart-line"></i><span>Dashboard 📊</span></a>
+            <div class="nav-btn active"><i class="fas fa-right-left"></i><span>Stock IN/OUT 🔄</span></div>
+            <a href="fill.html" class="nav-btn"><i class="fas fa-clock-rotate-left"></i><span>History 📜</span></a>
+            <a href="Settings.html" class="nav-btn"><i class="fas fa-gear"></i><span>Settings ⚙️</span></a>
+        </nav>
+
+        <div class="system-controls">
+            <button id="theme-toggle" class="ctrl-btn"><i class="fas fa-moon"></i></button>
+            <div class="win-icons">
+                <i class="fas fa-rectangle-xmark close-red" onclick="location.href='produ.html'"></i>
+            </div>
+        </div>
+    </header>
+
+    <main class="workspace">
+        <div class="container">
+            <div class="type-switcher">
+                <button class="mode-btn active" id="modeIn" onclick="setTransactionMode('IN')">
+                    <i class="fas fa-file-import"></i> Stock IN (Purchase)
+                </button>
+                <button class="mode-btn" id="modeOut" onclick="setTransactionMode('OUT')">
+                    <i class="fas fa-file-export"></i> Stock OUT (Sale)
+                </button>
+            </div>
+
+            <div class="movement-card">
+                <div class="card-header">
+                    <h2 id="formTitle">Stock Inward Entry 📥</h2>
+                    <p id="formDesc">Register incoming stock from vendors or production refills.</p>
+                </div>
+
+                <form id="stockMovementForm" class="grid-form">
+                    <div class="field-group">
+                        <label>Product Selection 📦</label>
+                        <select id="productSelect" required onchange="loadCurrentBalance()">
+                            <option value="">-- Select Product --</option>
+                            <!-- Options will be loaded dynamically from storage -->
+                        </select>
+                    </div>
+
+                    <div class="field-group">
+                        <label>Live Database Balance ⚖️</label>
+                        <input type="text" id="liveStock" value="0 Units" readonly class="readonly-input">
+                    </div>
+
+                    <div class="field-group">
+                        <label id="qtyLabel">Purchase Quantity 🔢</label>
+                        <input type="number" id="qtyInput" placeholder="Enter amount" required>
+                    </div>
+
+                    <div class="field-group">
+                        <label id="refLabel">Reference (Invoice / Vendor) 🧾</label>
+                        <input type="text" id="refInput" placeholder="Ref # or Name" required>
+                    </div>
+
+                    <div class="field-group">
+                        <label>Entry Date 📅</label>
+                        <input type="date" id="entryDate" required>
+                    </div>
+
+                    <div class="field-group">
+                        <label>Authorized By 👤</label>
+                        <input type="text" id="authBy" placeholder="Manager Name" required>
+                    </div>
+
+                    <div class="form-summary full-width">
+                        <div class="calc-preview">
+                            <span>Projected Balance:</span>
+                            <strong id="newBalance">0</strong>
+                        </div>
+                        <div class="action-btns">
+                            <button type="submit" class="btn-submit" id="mainSubmitBtn">Commit Transaction 🚀</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer-status">
+        <div class="foot-section">© SOFTWEBPK - Inventory Link Active</div>
+        <div class="foot-section middle">Active Mode: <span id="statusMode">PURCHASE_IN</span></div>
+        <div class="foot-section">System Time: <span id="clock">00:00:00</span></div>
+    </footer>
+
+    <script src="Stock.js"></script>
+</body>
+</html>
